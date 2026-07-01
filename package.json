@@ -1,0 +1,16 @@
+{
+  "name": "ai-proxy-verifier",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Probe AI proxy providers for model availability, concurrency, latency, and authenticity signals.",
+  "scripts": {
+    "start": "node src/server.js",
+    "probe": "node src/probe.js",
+    "probe:all": "node src/probe.js --all",
+    "check": "node src/probe.js --dry-run --all"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

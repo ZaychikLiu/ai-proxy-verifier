@@ -1,0 +1,218 @@
+{
+  "runId": "2026-07-01T17-14-50-161Z",
+  "startedAt": "2026-07-01T17:14:50.161Z",
+  "completedAt": "2026-07-01T17:14:50.161Z",
+  "summary": {
+    "total": 12,
+    "yes": 0,
+    "no": 0,
+    "skipped": 12,
+    "likelyReal": 0
+  },
+  "results": [
+    {
+      "providerId": "openrouter",
+      "providerName": "OpenRouter",
+      "modelId": "anthropic/claude-opus-4.8",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing OPENROUTER_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "openrouter",
+      "providerName": "OpenRouter",
+      "modelId": "anthropic/claude-fable-5",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing OPENROUTER_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "openrouter",
+      "providerName": "OpenRouter",
+      "modelId": "openai/gpt-5.2",
+      "family": "openai",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing OPENROUTER_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "openrouter",
+      "providerName": "OpenRouter",
+      "modelId": "google/gemini-3-pro",
+      "family": "gemini",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing OPENROUTER_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "requesty",
+      "providerName": "Requesty",
+      "modelId": "anthropic/claude-opus-4-8",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing REQUESTY_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "requesty",
+      "providerName": "Requesty",
+      "modelId": "anthropic/claude-fable-5",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing REQUESTY_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "requesty",
+      "providerName": "Requesty",
+      "modelId": "openai/gpt-5.2",
+      "family": "openai",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing REQUESTY_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "aihubmix",
+      "providerName": "AIHubMix",
+      "modelId": "claude-opus-4-8",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing AIHUBMIX_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "aihubmix",
+      "providerName": "AIHubMix",
+      "modelId": "claude-opus-4-8-think",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing AIHUBMIX_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "aihubmix",
+      "providerName": "AIHubMix",
+      "modelId": "claude-fable-5",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing AIHUBMIX_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "aimlapi",
+      "providerName": "AI/ML API",
+      "modelId": "anthropic/claude-opus-4-8",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing AIMLAPI_API_KEY"
+        }
+      ]
+    },
+    {
+      "providerId": "aimlapi",
+      "providerName": "AI/ML API",
+      "modelId": "anthropic/claude-fable-5",
+      "family": "claude",
+      "support": "skipped",
+      "authenticity": {
+        "score": 0,
+        "label": "missing-key",
+        "signals": []
+      },
+      "errors": [
+        {
+          "error": "Missing AIMLAPI_API_KEY"
+        }
+      ]
+    }
+  ]
+}

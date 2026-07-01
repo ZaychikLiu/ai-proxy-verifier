@@ -1,0 +1,70 @@
+name: Probe AI proxy providers
+
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: Optional provider id
+        required: false
+      model:
+        description: Optional model substring
+        required: false
+      runs:
+        description: Requests per provider/model
+        required: false
+        default: "1"
+      concurrency:
+        description: Parallel requests per provider/model
+        required: false
+        default: "1"
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run probes
+        env:
+          PROVIDER: ${{ github.event.inputs.provider }}
+          MODEL: ${{ github.event.inputs.model }}
+          RUNS: ${{ github.event.inputs.runs || '1' }}
+          CONCURRENCY: ${{ github.event.inputs.concurrency || '1' }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          REQUESTY_API_KEY: ${{ secrets.REQUESTY_API_KEY }}
+          AIHUBMIX_API_KEY: ${{ secrets.AIHUBMIX_API_KEY }}
+          AIMLAPI_API_KEY: ${{ secrets.AIMLAPI_API_KEY }}
+          GPTGOD_API_KEY: ${{ secrets.GPTGOD_API_KEY }}
+          ZHTEC_API_KEY: ${{ secrets.ZHTEC_API_KEY }}
+          NEKOAPI_API_KEY: ${{ secrets.NEKOAPI_API_KEY }}
+          PAINTBOT_API_KEY: ${{ secrets.PAINTBOT_API_KEY }}
+          CHATFIRE_API_KEY: ${{ secrets.CHATFIRE_API_KEY }}
+          AABAO_API_KEY: ${{ secrets.AABAO_API_KEY }}
+          GPTUU_API_KEY: ${{ secrets.GPTUU_API_KEY }}
+          YUEGLE_API_KEY: ${{ secrets.YUEGLE_API_KEY }}
+          KKSJ_API_KEY: ${{ secrets.KKSJ_API_KEY }}
+          NIO_API_KEY: ${{ secrets.NIO_API_KEY }}
+          GUEAI_API_KEY: ${{ secrets.GUEAI_API_KEY }}
+          AZAPI_API_KEY: ${{ secrets.AZAPI_API_KEY }}
+          YUNWU_API_KEY: ${{ secrets.YUNWU_API_KEY }}
+        run: |
+          node src/probe.js --all \
+            ${PROVIDER:+--provider "$PROVIDER"} \
+            ${MODEL:+--model "$MODEL"} \
+            --runs "${RUNS:-1}" \
+            --concurrency "${CONCURRENCY:-1}"
+        shell: bash
+      - name: Commit public dashboard data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/latest.json
+          git diff --cached --quiet || git commit -m "Update probe results"
+          git push
