@@ -454,9 +454,11 @@ export async function runProbeSuite(options = {}) {
 
   const latestPath = path.join(repoRoot, "data", "latest.json");
   const publicLatestPath = path.join(repoRoot, "public", "data", "latest.json");
+  const docsLatestPath = path.join(repoRoot, "docs", "data", "latest.json");
   const historyPath = path.join(repoRoot, "data", "results.jsonl");
   writeJsonAtomic(latestPath, run);
   writeJsonAtomic(publicLatestPath, run);
+  writeJsonAtomic(docsLatestPath, run);
   appendJsonLine(historyPath, run);
   return run;
 }

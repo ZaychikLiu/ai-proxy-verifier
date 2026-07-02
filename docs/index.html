@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Proxy Verifier</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>AI Proxy Verifier</h1>
+        <p>模型可用性、并发、延迟和真实性信号看板</p>
+      </div>
+      <button id="refreshButton" type="button">刷新</button>
+    </header>
+
+    <main>
+      <section class="panel controls">
+        <label>
+          站点
+          <select id="providerSelect"></select>
+        </label>
+        <label>
+          模型过滤
+          <input id="modelInput" placeholder="claude / opus / fable" />
+        </label>
+        <label>
+          请求数
+          <input id="runsInput" type="number" min="1" max="50" value="1" />
+        </label>
+        <label>
+          并发
+          <input id="concurrencyInput" type="number" min="1" max="20" value="1" />
+        </label>
+        <label class="checkbox">
+          <input id="includeDisabledInput" type="checkbox" />
+          包含禁用站点
+        </label>
+        <button id="runButton" type="button">开始测试</button>
+      </section>
+
+      <section class="metrics" id="metrics"></section>
+
+      <section class="panel">
+        <div class="sectionTitle">
+          <h2>最新结果</h2>
+          <span id="runMeta"></span>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>站点</th>
+                <th>模型</th>
+                <th>支持</th>
+                <th>真实性</th>
+                <th>并发</th>
+                <th>成功</th>
+                <th>P95</th>
+                <th>响应模型</th>
+                <th>错误</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sectionTitle">
+          <h2>配置状态</h2>
+          <span>密钥只在后端读取，前端只显示是否存在</span>
+        </div>
+        <div class="providerGrid" id="providerGrid"></div>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

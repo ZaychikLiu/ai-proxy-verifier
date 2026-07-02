@@ -39,7 +39,7 @@ node src/probe.js --dry-run --all
 这个仓库内置 `.github/workflows/probe.yml`：
 
 1. 在 GitHub 仓库 Settings -> Secrets and variables -> Actions 填入对应 API key。
-2. 开启 GitHub Pages，发布 `main` 分支的 `/public`。
+2. 开启 GitHub Pages，发布 `main` 分支的 `/docs`。
 3. Actions 会每小时跑一次，把脱敏后的最新结果写到 `public/data/latest.json`。
 
 如果你不想自动提交结果，可以把 workflow 最后的 commit/push 步骤删掉，改成上传 artifact。
