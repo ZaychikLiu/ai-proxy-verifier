@@ -60,11 +60,12 @@ jobs:
             ${MODEL:+--model "$MODEL"} \
             --runs "${RUNS:-1}" \
             --concurrency "${CONCURRENCY:-1}"
+          npm run export-static
         shell: bash
       - name: Commit public dashboard data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/latest.json docs/data/latest.json
+          git add public/data/latest.json docs/data/latest.json public/data/providers.json docs/data/providers.json
           git diff --cached --quiet || git commit -m "Update probe results"
           git push

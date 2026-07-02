@@ -1,7 +1,8 @@
 const state = {
   providers: [],
   latest: null,
-  running: false
+  running: false,
+  staticMode: false
 };
 
 const providerSelect = document.querySelector("#providerSelect");
@@ -22,6 +23,12 @@ async function api(path, options = {}) {
     ...options
   });
   if (!response.ok) throw new Error(await response.text());
+  return response.json();
+}
+
+async function fetchJson(path) {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) throw new Error(`${path}: ${response.status}`);
   return response.json();
 }
 
@@ -95,12 +102,22 @@ function renderResults() {
 }
 
 function render() {
+  runButton.disabled = state.staticMode || state.running;
+  runButton.textContent = state.staticMode ? "静态看板" : state.running ? "测试中" : "开始测试";
   renderMetrics();
   renderResults();
 }
 
 async function loadAll() {
-  const [providers, latest] = await Promise.all([api("/api/providers"), api("/api/results")]);
+  let providers;
+  let latest;
+  try {
+    [providers, latest] = await Promise.all([api("/api/providers"), api("/api/results")]);
+    state.staticMode = false;
+  } catch {
+    [providers, latest] = await Promise.all([fetchJson("data/providers.json"), fetchJson("data/latest.json")]);
+    state.staticMode = true;
+  }
   state.providers = providers.providers;
   state.latest = latest;
   renderProviders();
@@ -108,6 +125,10 @@ async function loadAll() {
 }
 
 async function runProbe() {
+  if (state.staticMode) {
+    alert("GitHub Pages 是静态看板。请在仓库 Actions 里手动运行 workflow，或在本地 npm start 后从本地页面发起测试。");
+    return;
+  }
   state.running = true;
   runButton.disabled = true;
   runButton.textContent = "测试中";
@@ -125,12 +146,12 @@ async function runProbe() {
     render();
   } finally {
     state.running = false;
-    runButton.disabled = false;
-    runButton.textContent = "开始测试";
+    render();
   }
 }
 
 function subscribeEvents() {
+  if (state.staticMode) return;
   const events = new EventSource("/api/events");
   events.addEventListener("run-completed", (event) => {
     state.latest = JSON.parse(event.data);
